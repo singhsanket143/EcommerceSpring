@@ -1,7 +1,9 @@
 package org.example.ecommercespring.gateway;
 
 import org.example.ecommercespring.dto.FakeStoreProductResponseDTO;
-import org.example.ecommercespring.dto.ProductDTO;
+import org.example.ecommercespring.dto.FakeStoreSingleProductResponseDTO;
+import org.example.ecommercespring.dto.ProductListDTO;
+import org.example.ecommercespring.dto.ProductSingleDTO;
 import org.example.ecommercespring.gateway.api.FakeStoreProductApi;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,7 @@ public class FakeStoreProductGateway implements IProductGateway {
     }
 
     @Override
-    public List<ProductDTO> getAllProducts() throws IOException {
+    public List<ProductListDTO> getAllProducts() throws IOException {
         FakeStoreProductResponseDTO response = this.fakeStoreProductApi.getAllProducts().execute().body();
 
         if (response == null || response.getProducts() == null) {
@@ -26,5 +28,14 @@ public class FakeStoreProductGateway implements IProductGateway {
         }
 
         return response.getProducts();
+    }
+
+    @Override
+    public ProductSingleDTO getProductById(int id) throws IOException {
+        FakeStoreSingleProductResponseDTO response = this.fakeStoreProductApi.getProductById(id).execute().body();
+        if (response == null || response.getProduct() == null) {
+            throw new IOException("Product not found for id: " + id);
+        }
+        return response.getProduct();
     }
 }
