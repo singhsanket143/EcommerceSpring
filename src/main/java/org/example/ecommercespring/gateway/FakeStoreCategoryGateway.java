@@ -23,7 +23,7 @@ public class FakeStoreCategoryGateway implements ICategoryGateway{
         FakeStoreCategoryResponseDTO response = this.fakeStoreCategoryApi.getAllFakeCategories().execute().body();
 
         // 2. Check if the response is null and throw an IOException if it is
-        if(response == null) {
+        if (ObjectUtils.isEmpty(response) || ObjectUtils.isEmpty(response.getCategories())) {
             throw new IOException("Failed to fetch categories from FakeStore API");
         }
 
