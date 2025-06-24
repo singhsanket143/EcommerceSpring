@@ -1,8 +1,8 @@
 package org.example.ecommercespring.gateway;
 
-import org.example.ecommercespring.dto.CategoryDTO;
-import org.example.ecommercespring.dto.FakeStoreCategoryResponseDTO;
+import org.example.ecommercespring.dto.*;
 import org.example.ecommercespring.gateway.api.FakeStoreCategoryApi;
+import org.example.ecommercespring.gateway.api.FakeStoreProductApi;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -13,8 +13,11 @@ public class FakeStoreCategoryGateway implements ICategoryGateway{
 
     private final FakeStoreCategoryApi fakeStoreCategoryApi;
 
-    public FakeStoreCategoryGateway(FakeStoreCategoryApi fakeStoreCategoryApi) {
+    private final FakeStoreProductApi fakeStoreProductApi;
+
+    public FakeStoreCategoryGateway(FakeStoreCategoryApi fakeStoreCategoryApi, FakeStoreProductApi fakeStoreProductApi) {
         this.fakeStoreCategoryApi = fakeStoreCategoryApi;
+        this.fakeStoreProductApi = fakeStoreProductApi;
     }
 
     @Override
@@ -34,4 +37,31 @@ public class FakeStoreCategoryGateway implements ICategoryGateway{
                         .build())
                 .toList();
     }
+
+    @Override
+    public List<ProductResponseDTO> getProductsByCategory(String categoryType) throws IOException {
+
+        FakeStoreAllProductResponseDTO response =  fakeStoreProductApi.findProductsByCategory(categoryType).execute().body();
+
+        if(response == null )
+            throw new IOException("Failed to fetch products from FakeStore API");
+
+        return response.getProducts()
+                .stream()
+                .map(ProductResponseDTO::toProductDTO)
+                .toList();
+    }
+
+    @Override
+    public ProductResponseDTO getProductById(Long id) throws IOException {
+
+        FakeStoreSingleProductDTO response = fakeStoreProductApi.getProductById(id).execute().body();
+
+        if(response == null)
+            throw new IOException("Failed to fetch product from FakeStore API");
+
+        return ProductResponseDTO.toProductDTO(response.getProduct());
+    }
+
+
 }
