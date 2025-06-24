@@ -4,6 +4,7 @@ import org.example.ecommercespring.dto.CategoryDTO;
 import org.example.ecommercespring.dto.FakeStoreCategoryResponseDTO;
 import org.example.ecommercespring.gateway.api.FakeStoreCategoryApi;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,7 +24,7 @@ public class FakeStoreCategoryGateway implements ICategoryGateway{
         FakeStoreCategoryResponseDTO response = this.fakeStoreCategoryApi.getAllFakeCategories().execute().body();
 
         // 2. Check if the response is null and throw an IOException if it is
-        if(response == null) {
+        if (ObjectUtils.isEmpty(response) || ObjectUtils.isEmpty(response.getCategories())) {
             throw new IOException("Failed to fetch categories from FakeStore API");
         }
 
