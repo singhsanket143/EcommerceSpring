@@ -11,4 +11,5 @@ public interface FakeStoreCategoryApi {
 
     @GET("products/category")
     Call<FakeStoreCategoryResponseDTO> getAllFakeCategories() throws IOException;
+
 }
