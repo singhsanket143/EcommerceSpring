@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FakeStoreProductResponseDTO {
-	private ProductDTO productDTO;
+	private Product product;
 	private String message;
 	private String status;
 }

@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDTO{
+public class Product{
 	private String image;
 	private String color;
 	private int price;
