@@ -19,7 +19,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id:[0-9]+}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) throws Exception {
         ProductDTO result = this.productService.getProductById(id);
 
