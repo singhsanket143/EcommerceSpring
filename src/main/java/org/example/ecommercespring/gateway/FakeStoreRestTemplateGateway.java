@@ -21,25 +21,17 @@ public class FakeStoreRestTemplateGateway implements ICategoryGateway{
         this.restTemplate = restTemplate;
     }
 
-
     @Override
     public List<CategoryDTO> getAllCategories() throws IOException {
         final String CATEGORIES_ENDPOINT = appConfig.getBaseUrl() + "products/category";
-        System.out.println(CATEGORIES_ENDPOINT);
 
         FakeStoreCategoryResponseDTO response = restTemplate
                 .getForEntity( CATEGORIES_ENDPOINT, FakeStoreCategoryResponseDTO.class).getBody();
-        System.out.println(response);
 
         if(response == null )
             throw new IOException("Error getting categories");
 
-        System.out.println(response);
-
-        List<CategoryDTO> categories = response.getCategories()
-                .stream().map((String category) -> CategoryDTO.builder().name(category).build()).toList();
-
-
-        return categories;
+        return response.getCategories()
+                .stream().map(CategoryDTO::new).toList();
     }
 }
