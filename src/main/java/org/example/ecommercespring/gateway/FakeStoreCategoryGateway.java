@@ -1,5 +1,6 @@
 package org.example.ecommercespring.gateway;
 
+import org.example.ecommercespring.Mapper.FakeStoreCategrory;
 import org.example.ecommercespring.dto.CategoryDTO;
 import org.example.ecommercespring.dto.FakeStoreCategoryResponseDTO;
 import org.example.ecommercespring.gateway.api.FakeStoreCategoryApi;
@@ -28,10 +29,6 @@ public class FakeStoreCategoryGateway implements ICategoryGateway{
         }
 
         // 3. Map the response to a list of CategoryDTO objects
-        return response.getCategories().stream()
-                .map(category -> CategoryDTO.builder()
-                        .name(category)
-                        .build())
-                .toList();
+        return FakeStoreCategrory.toCategoryDTO(response);
     }
 }
