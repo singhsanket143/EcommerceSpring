@@ -1,6 +1,6 @@
 package org.example.ecommercespring.entity;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -17,7 +17,10 @@ public class Product extends BaseEntity {
     private int discount;
     private String model;
     private String title;
-    private String category;
     private String brand;
     private boolean popular;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 }

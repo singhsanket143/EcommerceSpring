@@ -1,13 +1,14 @@
 package org.example.ecommercespring.dto;
 
-
 import lombok.*;
+import org.example.ecommercespring.entity.Category;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CategoryDTO {
+    private Long id;
     private String name;
 }

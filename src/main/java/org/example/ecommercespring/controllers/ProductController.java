@@ -24,7 +24,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO dto) {
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO dto) throws Exception {
         return ResponseEntity.ok(productService.create(dto));
     }
 
