@@ -1,10 +1,10 @@
 package org.example.ecommercespring.services;
 
-import org.example.ecommercespring.dto.ProductDTO;
-import org.example.ecommercespring.mappers.ProductMapper;
-import org.example.ecommercespring.entity.Product;
-import org.example.ecommercespring.repository.ProductRepository;
-import org.springframework.stereotype.Service;
+import org.example.ecommercespring.dto.*;
+import org.example.ecommercespring.mappers.*;
+import org.example.ecommercespring.entity.*;
+import org.example.ecommercespring.repository.*;
+import org.springframework.stereotype.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,9 +13,11 @@ import java.util.stream.Collectors;
 public class ProductService implements IProductService {
 
     private final ProductRepository repo;
+    private final CategoryRepository categoryRepository;
 
-    public ProductService(ProductRepository repo) {
+    public ProductService(ProductRepository repo, CategoryRepository categoryRepository) {
         this.repo = repo;
+        this.categoryRepository = categoryRepository;
     }
 
     public ProductDTO getProductById(Long id) throws Exception {
@@ -31,8 +33,11 @@ public class ProductService implements IProductService {
                 .collect(Collectors.toList());
     }
 
-    public ProductDTO create(ProductDTO dto) {
-        Product saved = repo.save(ProductMapper.toEntity(dto));
+    public ProductDTO create(ProductDTO dto) throws Exception{
+        Category category = categoryRepository.findById(dto.getCategoryId())
+                .orElseThrow(() -> new Exception("Category not found"));
+
+        Product saved = repo.save(ProductMapper.toEntity(dto, category));
         return ProductMapper.toDto(saved);
     }
 
