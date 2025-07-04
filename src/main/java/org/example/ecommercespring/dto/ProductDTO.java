@@ -21,35 +21,4 @@ public class ProductDTO{
 	private String brand;
 	private boolean popular;
 
-	public static ProductDTO fromEntity(Product product) {
-		return ProductDTO.builder()
-				.id(product.getId())
-				.image(product.getImage())
-				.color(product.getColor())
-				.price(product.getPrice())
-				.description(product.getDescription())
-				.discount(product.getDiscount())
-				.model(product.getModel())
-				.title(product.getTitle())
-				.category(product.getCategory())
-				.brand(product.getBrand())
-				.popular(product.isPopular())
-				.build();
-	}
-
-	public Product toEntity() {
-		return Product.builder()
-				.image(this.image)
-				.color(this.color)
-				.price(this.price)
-				.description(this.description)
-				.discount(this.discount)
-				.model(this.model)
-				.title(this.title)
-				.category(this.category)
-				.brand(this.brand)
-				.popular(this.popular)
-				.build();
-	}
-
 }
