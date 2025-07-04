@@ -1,6 +1,6 @@
 package org.example.ecommercespring.controllers;
 
-import org.example.ecommercespring.dto.CategoryDTO;
+import org.example.ecommercespring.dto.*;
 import org.example.ecommercespring.services.ICategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +36,12 @@ public class CategoryController {
         System.out.println("Searching category with name: " + name);
         CategoryDTO result = categoryService.getCategoryByName(name);
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/{categoryId}/products")
+    public ResponseEntity<List<ProductDTO>> getProductsOfCategory(@PathVariable Long categoryId) {
+        List<ProductDTO> products = categoryService.getProductsOfCategory(categoryId);
+        return ResponseEntity.ok(products);
     }
 
 }

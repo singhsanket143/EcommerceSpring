@@ -1,9 +1,9 @@
 package org.example.ecommercespring.services;
 
-import org.example.ecommercespring.dto.CategoryDTO;
+import org.example.ecommercespring.dto.*;
 import org.example.ecommercespring.mappers.*;
 
-import org.example.ecommercespring.entity.Category;
+import org.example.ecommercespring.entity.*;
 import org.example.ecommercespring.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +41,13 @@ public class CategoryService implements ICategoryService {
                 .orElseThrow(() -> new RuntimeException("Category not found: " + name));
     }
 
+    @Override
+    public List<ProductDTO> getProductsOfCategory(Long categoryId) {
+        Category category = repo.findById(categoryId)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
 
-
-
-
+        return category.getProducts().stream()
+                .map(ProductMapper::toDto)
+                .toList();
+    }
 }
