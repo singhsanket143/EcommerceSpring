@@ -1,7 +1,7 @@
 package org.example.ecommercespring.dto;
 
 import lombok.*;
-import org.example.ecommercespring.entity.*;
+import org.example.ecommercespring.entity.Product;
 
 @Getter
 @Setter
@@ -17,9 +17,8 @@ public class ProductDTO{
 	private String model;
 	private Long id;
 	private String title;
+	private String category;
 	private String brand;
 	private boolean popular;
-	private Long categoryId;
-
 
 }

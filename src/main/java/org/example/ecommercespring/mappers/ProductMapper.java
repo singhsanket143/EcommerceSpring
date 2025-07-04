@@ -1,41 +1,38 @@
 package org.example.ecommercespring.mappers;
 
 import org.example.ecommercespring.dto.ProductDTO;
-import org.example.ecommercespring.dto.FakeStoreProductResponseDTO;
 import org.example.ecommercespring.entity.Product;
-import org.example.ecommercespring.entity.Category;
 
 public class ProductMapper {
 
     public static ProductDTO toDto(Product product) {
         return ProductDTO.builder()
                 .id(product.getId())
-                .title(product.getTitle())
-                .price(product.getPrice())
-                .brand(product.getBrand())
+                .image(product.getImage())
                 .color(product.getColor())
+                .price(product.getPrice())
                 .description(product.getDescription())
                 .discount(product.getDiscount())
-                .image(product.getImage())
                 .model(product.getModel())
+                .title(product.getTitle())
+                .category(product.getCategory())
+                .brand(product.getBrand())
                 .popular(product.isPopular())
-                .categoryId(product.getCategory().getId())
                 .build();
     }
 
-    public static Product toEntity(ProductDTO dto, Category category) {
+    public static Product toEntity(ProductDTO dto) {
         return Product.builder()
-                .title(dto.getTitle())
-                .price(dto.getPrice())
-                .brand(dto.getBrand())
+                .image(dto.getImage())
                 .color(dto.getColor())
+                .price(dto.getPrice())
                 .description(dto.getDescription())
                 .discount(dto.getDiscount())
-                .image(dto.getImage())
                 .model(dto.getModel())
+                .title(dto.getTitle())
+                .category(dto.getCategory())
+                .brand(dto.getBrand())
                 .popular(dto.isPopular())
-                .category(category)
                 .build();
     }
-
 }
