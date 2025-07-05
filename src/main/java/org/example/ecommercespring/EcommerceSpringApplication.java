@@ -11,7 +11,8 @@ public class EcommerceSpringApplication {
 
     public static void main(String[] args) {
 
-        Dotenv dotenv = Dotenv.configure().load(); // Load environment variables from .env file
+        Dotenv dotenv = Dotenv.configure()
+                .directory("C:/Users/sride/Harsha/Algocamp/EcommerceSpring/src/.env").load(); // Load environment variables from .env file
 
         dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue())); // Set system properties from environment variables and set them
 
