@@ -22,7 +22,6 @@ public class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //G
     private long id;
 
     @CreatedDate

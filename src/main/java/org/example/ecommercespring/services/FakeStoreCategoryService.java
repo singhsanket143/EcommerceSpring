@@ -24,4 +24,9 @@ public class FakeStoreCategoryService implements ICategoryService {
     public List<CategoryDTO> getAllCategories() throws IOException {
         return this.categoryGateway.getAllCategories();
     }
+
+    public CategoryDTO createCategory(CategoryDTO categoryDTO) {
+        //Not Implemented
+        return null;
+    }
 }
