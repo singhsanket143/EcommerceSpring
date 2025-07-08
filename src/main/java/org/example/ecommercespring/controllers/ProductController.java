@@ -3,7 +3,9 @@ package org.example.ecommercespring.controllers;
 
 import org.example.ecommercespring.dto.ProductDTO;
 import org.example.ecommercespring.dto.ProductWithCategoryDTO;
+import org.example.ecommercespring.exception.ProductNotFoundException;
 import org.example.ecommercespring.services.IProductService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,11 @@ public class ProductController {
 
         return ResponseEntity.ok(result);
 
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<String> handleProductNotFound(ProductNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
     @PostMapping
