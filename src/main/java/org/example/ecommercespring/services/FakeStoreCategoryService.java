@@ -2,6 +2,7 @@ package org.example.ecommercespring.services;
 
 
 import org.example.ecommercespring.dto.CategoryDTO;
+import org.example.ecommercespring.dto.ProductWithCategoryDTO;
 import org.example.ecommercespring.gateway.ICategoryGateway;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -29,4 +30,10 @@ public class FakeStoreCategoryService implements ICategoryService {
         //Not Implemented
         return null;
     }
+    public CategoryDTO getByName(String name) throws Exception{
+        //Not Implemented
+        return null;
+    }
+
+
 }

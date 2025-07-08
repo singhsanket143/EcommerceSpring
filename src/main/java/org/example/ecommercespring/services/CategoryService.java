@@ -4,6 +4,7 @@ import org.example.ecommercespring.mappers.*;
 
 import org.example.ecommercespring.entity.*;
 import org.example.ecommercespring.repository.CategoryRepository;
+import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,4 +35,12 @@ public class CategoryService implements ICategoryService {
         return CategoryMapper.toDto(saved);
     }
 
+    @Override
+    public CategoryDTO getByName(String name) throws Exception {
+        Category category = repo.findByName(name)
+                .orElseThrow(() -> new Exception("Category not found with name: " + name));
+
+        return CategoryMapper.toDto(category);
+
+    }
 }
