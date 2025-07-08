@@ -1,6 +1,7 @@
 package org.example.ecommercespring.services;
 
 
+import org.example.ecommercespring.dto.AllProductsOfCategoryDTO;
 import org.example.ecommercespring.dto.CategoryDTO;
 import org.example.ecommercespring.dto.ProductWithCategoryDTO;
 import org.example.ecommercespring.gateway.ICategoryGateway;
@@ -31,6 +32,12 @@ public class FakeStoreCategoryService implements ICategoryService {
         return null;
     }
     public CategoryDTO getByName(String name) throws Exception{
+        //Not Implemented
+        return null;
+    }
+
+    @Override
+    public AllProductsOfCategoryDTO getAllProductsOfCategory(Long categoryId) {
         //Not Implemented
         return null;
     }

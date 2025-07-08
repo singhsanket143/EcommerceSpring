@@ -35,4 +35,12 @@ public class CategoryController {
         return ResponseEntity.ok(created);
     }
 
+    @GetMapping("/{id}/products")
+    public ResponseEntity<AllProductsOfCategoryDTO> getAllProductsOfCategory(@PathVariable Long id) throws Exception{
+
+        AllProductsOfCategoryDTO dto = categoryService.getAllProductsOfCategory(id);
+        return ResponseEntity.ok(dto);
+
+    }
+
 }

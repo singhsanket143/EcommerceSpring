@@ -1,6 +1,7 @@
 package org.example.ecommercespring.controllers;
 
 
+import org.example.ecommercespring.dto.AllProductsOfCategoryDTO;
 import org.example.ecommercespring.dto.ProductDTO;
 import org.example.ecommercespring.dto.ProductWithCategoryDTO;
 import org.example.ecommercespring.services.IProductService;
@@ -36,4 +37,6 @@ public class ProductController {
         ProductWithCategoryDTO dto =  productService.getProductWithCategory(id);
         return ResponseEntity.ok(dto);
     }
+
+
  }

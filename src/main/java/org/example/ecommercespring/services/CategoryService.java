@@ -4,11 +4,11 @@ import org.example.ecommercespring.mappers.*;
 
 import org.example.ecommercespring.entity.*;
 import org.example.ecommercespring.repository.CategoryRepository;
-import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService implements ICategoryService {
@@ -42,5 +42,21 @@ public class CategoryService implements ICategoryService {
 
         return CategoryMapper.toDto(category);
 
+    }
+
+    public AllProductsOfCategoryDTO getAllProductsOfCategory(Long categoryId) throws Exception {
+        Category category = repo.findById(categoryId)
+                .orElseThrow(() -> new Exception("Category not found with id: " + categoryId));
+
+        List<ProductDTO> productDTOs = category.getProducts()
+                .stream()
+                .map(product -> ProductMapper.toDto(product))
+                .collect(Collectors.toList());
+
+        return AllProductsOfCategoryDTO.builder()
+                .categoryId(category.getId())
+                .name(category.getName())
+                .products(productDTOs)
+                .build();
     }
 }
