@@ -9,5 +9,5 @@ public interface ICategoryService {
 
     List<CategoryDTO> getAllCategories() throws IOException;
 
-    CategoryDTO createCategory(CategoryDTO categoryDTO);
+     CategoryDTO createCategory(CategoryDTO categoryDTO);
 }
