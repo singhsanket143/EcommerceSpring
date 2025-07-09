@@ -10,13 +10,12 @@ import lombok.*;
 public class ProductDTO{
 	private String image;
 	private String color;
-	private int price;
+	private Double price;
 	private String description;
-	private int discount;
+	private Double discount;
 	private String model;
 	private Long id;
 	private String title;
-	private String category;
+	private Long category;
 	private String brand;
-	private boolean popular;
 }

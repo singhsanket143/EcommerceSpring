@@ -6,6 +6,9 @@ import org.example.ecommercespring.services.IProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -25,7 +28,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO dto) {
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO dto) throws IOException {
         return ResponseEntity.ok(productService.createProduct(dto));
+    }
+    @GetMapping("/AllProduct/Category/{id}")
+    public ResponseEntity<List<ProductDTO>> getProductsOfAllCategory(@PathVariable("id") Long id) throws Exception {
+        List<ProductDTO> productDTO = productService.getAllProductsOfCategory(id);
+        return ResponseEntity.ok().body(productDTO);
     }
 }
