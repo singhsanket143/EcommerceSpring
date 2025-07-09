@@ -9,6 +9,6 @@ public interface IProductService {
 
     ProductDTO getProductById(Long id) throws Exception;
     ProductDTO createProduct(ProductDTO dto) throws IOException;
-    List<ProductDTO> getAllProductsOfCategory(Long id) throws Exception;
+     List<ProductDTO> getAllProductsOfCategory(Long id) throws Exception;
 
 }
