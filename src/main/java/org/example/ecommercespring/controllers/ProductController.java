@@ -1,7 +1,6 @@
 package org.example.ecommercespring.controllers;
 
 
-import org.example.ecommercespring.dto.AllProductsOfCategoryDTO;
 import org.example.ecommercespring.dto.ProductDTO;
 import org.example.ecommercespring.dto.ProductWithCategoryDTO;
 import org.example.ecommercespring.services.IProductService;
@@ -19,7 +18,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) throws Exception {
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id){
         ProductDTO result = this.productService.getProductById(id);
 
         return ResponseEntity.ok(result);
