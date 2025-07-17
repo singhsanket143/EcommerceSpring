@@ -19,9 +19,18 @@ public class FakeStoreCategoryService implements ICategoryService {
             @Qualifier("fakeStoreRestTemplateGateway") ICategoryGateway categoryGateway) {
         this.categoryGateway = categoryGateway;
     }
-
     @Override
     public List<CategoryDTO> getAllCategories() throws IOException {
         return this.categoryGateway.getAllCategories();
+    }
+
+    @Override
+    public CategoryDTO getCategoryByName(String name) throws Exception {
+        return null;
+    }
+
+    @Override
+    public CategoryDTO createCategory(CategoryDTO categoryDTO) throws Exception {
+        return null;
     }
 }

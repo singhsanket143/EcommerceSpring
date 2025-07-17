@@ -18,7 +18,6 @@ public class FakeStoreRestTemplateGateway implements ICategoryGateway{
         RestTemplate restTemplate =new RestTemplate();
         String Url="https://fakestoreapi.in/api/products/category";
         ResponseEntity<FakeStoreCategoryResponseDTO> response=restTemplate.getForEntity(Url,FakeStoreCategoryResponseDTO.class);
-        //System.out.println(response.getBody().getCategories());
         return response.getBody().getCategories().stream().map(category -> CategoryDTO.builder()
                         .name(category)
                         .build())

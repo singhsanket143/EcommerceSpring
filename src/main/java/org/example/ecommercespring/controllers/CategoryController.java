@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api/category")
 public class CategoryController {
 
     private final ICategoryService categoryService;
@@ -19,14 +19,20 @@ public class CategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoryDTO>> getAllCategories() throws IOException {
-        List<CategoryDTO> result = this.categoryService.getAllCategories();
-        return ResponseEntity.ok(result);
+    public ResponseEntity<?> getAllCategories(@RequestParam(required = false) String name) throws Exception {
+        if(name != null && !name.isEmpty()) {
+            CategoryDTO categoryDTO = this.categoryService.getCategoryByName(name);
+            return ResponseEntity.ok(categoryDTO);
+        }
+        else{
+            List<CategoryDTO> result = this.categoryService.getAllCategories();
+            return ResponseEntity.ok(result);
+        }
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO categoryDTO) {
-        throw new UnsupportedOperationException("Method not implemented yet");
+    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO categoryDTO) throws Exception {
+        return ResponseEntity.ok(categoryService.createCategory(categoryDTO));
     }
 
 }
