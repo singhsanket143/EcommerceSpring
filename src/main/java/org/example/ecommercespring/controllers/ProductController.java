@@ -7,6 +7,8 @@ import org.example.ecommercespring.services.IProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -37,5 +39,10 @@ public class ProductController {
         return ResponseEntity.ok(dto);
     }
 
+    @PostMapping("/batch")
+    public ResponseEntity<List<ProductDTO>> getProductsByIds(@RequestBody List<Long> ids) {
+        List<ProductDTO> products = productService.getProductsByIds(ids);
+        return ResponseEntity.ok(products);
+    }
 
  }
