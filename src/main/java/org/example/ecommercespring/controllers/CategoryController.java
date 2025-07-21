@@ -19,9 +19,17 @@ public class CategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoryDTO>> getAllCategories() throws IOException {
+    public ResponseEntity<?> getAllCategories(@RequestParam(required = false) String name) throws IOException {
+        if(name!=null && !name.isEmpty()){
+            CategoryDTO categoryDTO = categoryService.getByName(name);
+            return ResponseEntity.ok(categoryDTO);
+        }
         List<CategoryDTO> result = this.categoryService.getAllCategories();
         return ResponseEntity.ok(result);
     }
-
+    @PostMapping
+    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO dto) throws Exception {
+        CategoryDTO created = categoryService.createCategory(dto);
+        return ResponseEntity.ok(created);
+    }
 }
