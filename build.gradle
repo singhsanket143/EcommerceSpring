@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.3.0'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8'
 }
 
 tasks.named('test') {
