@@ -1,6 +1,8 @@
 package org.example.ecommercespring.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
@@ -52,5 +54,22 @@ public class CategoryServiceTest {
         verify(categoryRepository, times(1)).findAll();
         
     }
-    
+
+    @Test
+    @DisplayName("should create a new category")
+    void createCategory_shouldCreateNewCategory() {
+        // Arrange
+        CategoryDTO categoryDTO = CategoryDTO.builder().name("Electronics").build();
+        Category savedCategory = Category.builder().name("Electronics").build();
+        savedCategory.setId(3L);
+
+        when(categoryRepository.save(any(Category.class))).thenReturn(savedCategory);
+
+        // Act
+        CategoryDTO result = categoryService.createCategory(categoryDTO);
+
+        // Assert
+        assertEquals("Electronics", result.getName());
+    }
+
 }
