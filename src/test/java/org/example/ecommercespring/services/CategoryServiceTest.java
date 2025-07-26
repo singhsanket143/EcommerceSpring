@@ -70,7 +70,6 @@ public class CategoryServiceTest {
 
         // Assert
         assertEquals("Electronics", result.getName());
-        assertNotNull(result);
     }
 
 }
